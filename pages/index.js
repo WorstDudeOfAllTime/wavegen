@@ -1,28 +1,25 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import styles from '@/styles/Home.module.css';
-import BackgroundLayer from '@/components/BackgroundLayer';
-import Gradient from 'javascript-color-gradient';
 import randomHexColor from 'random-hex-color';
 import Wave from 'react-wavify';
+import { useEffect, useState } from 'react';
+import Sky from '@/components/Sky';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
-  const gradientArray = new Gradient()
-    .setColorGradient(randomHexColor(), randomHexColor())
-    .getColors();
-  const gradientArrayOne = new Gradient()
-    .setColorGradient(randomHexColor(), randomHexColor())
-    .getColors();
-  const gradientArrayTwo = new Gradient()
-    .setColorGradient(randomHexColor(), randomHexColor())
-    .getColors();
-  const gradientArrayWaveOne = new Gradient()
-    .setColorGradient(randomHexColor(), randomHexColor())
-    .getColors();
-  const gradientArrayWaveTwo = new Gradient()
-    .setColorGradient(randomHexColor(), randomHexColor())
-    .getColors();
+  const [innerHeight, setInnerHeight] = useState(null);
+  const [innerWidth, setInnerWidth] = useState(null);
+
+  useEffect(() => {
+    setInnerHeight((prevHeight) => {
+      return window.innerHeight;
+    });
+    setInnerWidth((prevWidth) => {
+      return window.innerWidth;
+    });
+  }, []);
+
 
   return (
     <div className={styles.siteContainer}>
@@ -34,90 +31,10 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Wave
-          fill='black'
-          paused={false}
-          options={{
-            height: 10,
-            amplitude: 22,
-            speed: 0.35,
-            points: 4,
-          }}
-          style={{
-            transform: 'rotate(180deg)',
-            width: '100%',
-            height: '24%',
-            opacity: '1',
-            zIndex:'20',
-            filter: `drop-shadow(0px -20px 10px 
-        ${'hotpink'}) drop-shadow(0px -20px 10px 
-        ${'hotpink'}) drop-shadow(0px -20px 10px 
-        ${'hotpink'})`,
-          }}
-        >
-          <defs>
-            <linearGradient id="gradient" gradientTransform="rotate(90)">
-              <stop offset="10%" stopColor="#d4af37" />
-              <stop offset="90%" stopColor="#f00" />
-            </linearGradient>
-          </defs>
-        </Wave>
-        <Wave
-          fill='black'
-          paused={false}
-          options={{
-            height: 10,
-            amplitude: 24,
-            speed: 0.4,
-            points: 4,
-          }}
-          style={{
-            transform: 'rotate(90deg)',
-            width: '90%',
-            height: 'auto',
-            left:'-43%',
-            position: 'absolute',
-            opacity: '1',
-            zIndex: '21',
-          }}
-        >
-          <defs>
-            <linearGradient id="gradient" gradientTransform="rotate(90)">
-              <stop offset="10%" stopColor="#d4af37" />
-              <stop offset="90%" stopColor="#f00" />
-            </linearGradient>
-          </defs>
-        </Wave>
-        <Wave
-          fill='black'
-          paused={false}
-          options={{
-            height: 10,
-            amplitude: 24,
-            speed: 0.4,
-            points: 4,
-          }}
-          style={{
-            transform: 'rotate(270deg)',
-            width: '90%',
-            height: 'auto',
-            right:'-43%',
-            position: 'absolute',
-            opacity: '1',
-            zIndex: '21',
-          }}
-        >
-          <defs>
-            <linearGradient id="gradient" gradientTransform="rotate(270)">
-              <stop offset="10%" stopColor="#d4af37" />
-              <stop offset="90%" stopColor="#f00" />
-            </linearGradient>
-          </defs>
-        </Wave>
-        <Wave
-          fill='black'
-          paused={false}
-          stroke='white'
+          fill="black"
+          stroke="black"
           strokeWidth={3}
+          paused={false}
           options={{
             height: 20,
             amplitude: 22,
@@ -125,37 +42,84 @@ export default function Home() {
             points: 4,
           }}
           style={{
-            width: '100%',
-            height: '24%',
             position: 'absolute',
+            width: '100%',
+            height: '30%',
+            opacity: '1',
+            zIndex: '20',
             bottom: '0',
             left: '0',
-            opacity: '1',
-            zIndex:'20',
             filter: `drop-shadow(0px -20px 10px 
-        ${'hotpink'}) drop-shadow(0px -20px 10px 
-        ${'hotpink'}) drop-shadow(0px -20px 10px 
-        ${'hotpink'})`,
+        ${randomHexColor()}) drop-shadow(0px -20px 10px 
+          ${randomHexColor()}) drop-shadow(0px -20px 10px 
+            ${randomHexColor()})`,
           }}
-        />
-        <BackgroundLayer
-          deg={Math.floor(Math.random() * 360)}
-          opacity={0.35}
-          zIn={2}
-          linearGradient={gradientArray.join()}
-        />
-        <BackgroundLayer
-          deg={Math.floor(Math.random() * 360)}
-          opacity={0.35}
-          zIn={3}
-          linearGradient={gradientArrayOne.join()}
-        />
-        <BackgroundLayer
-          deg={Math.floor(Math.random() * 360)}
-          opacity={0.35}
-          zIn={4}
-          linearGradient={gradientArrayTwo.join()}
-        />
+        >
+          <defs>
+            <linearGradient id="gradient" gradientTransform="rotate(90)">
+              <stop offset="10%" stopColor="#d4af37" />
+              <stop offset="90%" stopColor="#f00" />
+            </linearGradient>
+          </defs>
+        </Wave>
+        <Wave
+          fill="none"
+          stroke="white"
+          strokeWidth={4}
+          paused={false}
+          options={{
+            height: 20,
+            amplitude: 22,
+            speed: 0.35,
+            points: 4,
+          }}
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '20%',
+            opacity: '.8',
+            zIndex: '22',
+            bottom: '0',
+            left: '0',
+          }}
+        >
+          <defs>
+            <linearGradient id="gradient" gradientTransform="rotate(90)">
+              <stop offset="10%" stopColor="#d4af37" />
+              <stop offset="90%" stopColor="#f00" />
+            </linearGradient>
+          </defs>
+        </Wave>
+        <Wave
+          fill="none"
+          stroke="white"
+          strokeWidth={4}
+          paused={false}
+          options={{
+            height: 20,
+            amplitude: 22,
+            speed: 0.35,
+            points: 4,
+          }}
+          style={{
+            position: 'absolute',
+            width: '110%',
+            height: '10%',
+            opacity: '.8',
+            zIndex: '22',
+            bottom: '0',
+            left: '0',
+          }}
+        >
+          <defs>
+            <linearGradient id="gradient" gradientTransform="rotate(90)">
+              <stop offset="10%" stopColor="#d4af37" />
+              <stop offset="90%" stopColor="#f00" />
+            </linearGradient>
+          </defs>
+        </Wave>
+
+        <Sky innerWidth={innerWidth} innerHeight={innerHeight}></Sky>
       </main>
     </div>
   );
