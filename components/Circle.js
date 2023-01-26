@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
-const Circle = ({ setX, setY, innerWidth, innerHeight, setCircleShow }) => {
+const Circle = ({
+  setX,
+  setY,
+  innerWidth,
+  innerHeight,
+  setCircleShow,
+  circleShow,
+}) => {
   const [xPos, setXPos] = useState(setX);
-  const [yPos, setYPos] = useState(setY);
   const [size, setSize] = useState(25);
   const [sizeAdd, setSizeAdd] = useState(1);
+  const [movePos, setMovePos] = useState(0);
   useEffect(() => {
     if (xPos >= innerWidth + 150) {
       setCircleShow(false);
@@ -31,12 +38,18 @@ const Circle = ({ setX, setY, innerWidth, innerHeight, setCircleShow }) => {
     }, 50);
   }, [size]);
 
+  useEffect(() => {
+    setMovePos((prev) => {
+      return Math.floor(Math.random() * innerHeight);
+    });
+  }, [circleShow]);
+
   return (
     <>
       <circle
-        style={{ filter: 'blur(10px) drop-shadow(10px 10px 6px red)' }}
+        style={{ zIndex:'40', filter: 'blur(10px) drop-shadow(10px 10px 6px red)' }}
         cx={xPos.toString()}
-        cy={yPos.toString()}
+        cy={movePos.toString()}
         r={String(size + 20)}
         stroke="yellow"
         fill="rgb(0,0,0)"
@@ -45,7 +58,7 @@ const Circle = ({ setX, setY, innerWidth, innerHeight, setCircleShow }) => {
       <circle
         style={{ filter: 'blur(10px) drop-shadow(10px 10px 6px red)' }}
         cx={xPos.toString()}
-        cy={yPos.toString()}
+        cy={movePos.toString()}
         r={String(size + 10)}
         stroke={'red'}
         strokeWidth={5}
@@ -53,10 +66,10 @@ const Circle = ({ setX, setY, innerWidth, innerHeight, setCircleShow }) => {
       <circle
         style={{
           zIndex: '50',
-          filter: 'blur(10px) drop-shadow(10px 10px 6px red)',
+          filter: 'blur(15px) drop-shadow(10px 10px 9px red)',
         }}
         cx={xPos.toString()}
-        cy={yPos.toString()}
+        cy={movePos.toString()}
         r={String(size)}
         fill="red"
       />

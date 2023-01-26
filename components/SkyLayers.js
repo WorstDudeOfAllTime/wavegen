@@ -1,7 +1,8 @@
 import BackgroundLayer from './BackgroundLayer';
 import Gradient from 'javascript-color-gradient';
 import randomHexColor from 'random-hex-color';
-const SkyLayers = () => {
+import LineLayer from './LineLayer';
+const SkyLayers = ({ innerHeight, innerWidth }) => {
   const gradientArray = new Gradient()
     .setColorGradient(randomHexColor(), randomHexColor())
     .getColors();
@@ -20,6 +21,7 @@ const SkyLayers = () => {
 
   return (
     <>
+
       <BackgroundLayer
         deg={Math.floor(Math.random() * 360)}
         opacity={0.35}
