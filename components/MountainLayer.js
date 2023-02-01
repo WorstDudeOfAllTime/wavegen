@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import styles from './../styles/MountainLayer.module.css'
 const MountainLayer = ({ innerHeight, innerWidth }) => {
   const [xCordOne, setXCordOne] = useState(
     Math.floor(Math.random() * (innerWidth / 2))
@@ -13,7 +14,7 @@ const MountainLayer = ({ innerHeight, innerWidth }) => {
     Math.floor(Math.random() * (innerHeight / 2))
   );
   return (
-    <svg
+    <svg className={styles.jawnie}
       style={{
         zIndex: '18',
         position: 'absolute',
@@ -23,11 +24,11 @@ const MountainLayer = ({ innerHeight, innerWidth }) => {
     >
       <polygon
         points={`${Math.floor(
-          Math.random() * (innerWidth / 2)
+          Math.random() * (innerWidth)
         )}, ${innerHeight} ${Math.floor(
-          Math.random() * (innerWidth / 2 + 200)
+          Math.random() * (innerWidth)
         )}, ${innerHeight} ${Math.floor(
-          Math.random() * (innerWidth / 2)
+          Math.random() * (innerWidth)
         )}, ${Math.floor(Math.random() * (innerHeight / 1.5))}`}
         fill="white"
       ></polygon>
